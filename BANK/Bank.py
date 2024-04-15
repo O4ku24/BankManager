@@ -14,6 +14,7 @@ class Bank:
     def add_client(self):
         client = Client.fill()
         self.__client.append(client)
+        print (f'Add client {self.add_client}')
 
     def create_account(self):
         pass

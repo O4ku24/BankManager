@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class AccountType(Enum):
+    DEPOZIT : 0
     DEBIT: 0
     CREDIT: 0
 
@@ -13,29 +14,21 @@ class Account:
 
 
     def __init__(self) -> None:
-        Account.__account_amout += 1 
-        self.id = Account.get_current_id()
-        #self.id = hash(self)
+    
+        self.id = hash(self)
+        self.__debit = 0
 
 
-
-
-
-
-    @staticmethod
-    def get_current_id():
-        Account.__account_amout += 1
-        return Account.__account_amout
     
 
 
 class DebitAcc(Account):
     
     def __init__(self, 
-                 debit = 0) -> None:
+                 __debit = 0) -> None:
         super().__init__()
 
-        self.debit = debit
+        self.__debit = __debit
 
 
 
@@ -43,7 +36,7 @@ class DebitAcc(Account):
 class CreditAcc(Account):
 
     def __init__(self,
-                 default_credit = 1000) -> None:
+                 default_credit = 100000) -> None:
         super().__init__()
 
-        self.__client = default_credit
+        self.__credit = default_credit

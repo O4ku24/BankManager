@@ -1,39 +1,27 @@
-""" самостоятельная работа """
-
-""" Есть несколько Банков, которые предоставляют финансовые услуги по операциям с деньгами.
-В банке есть Счета и Клиенты. У клиента есть имя, фамилия, адрес и номер паспорта 
-(имя и фамилия обязательны, остальное – опционально)"""
 
 from Client import Client
 from Bank import Bank
+import uvicorn
+from database import  engine
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 
 
+app = FastAPI(
+    title="TodoList",
+    version="0.0.1"
+)
 
-class Bank:
-    def __init__(self, __name) -> None:
-        self.__name = __name
-        self.__client = []
-
-
-    def add_client(self,__name):
-        client = Client.fill()
-        self.__client.append(client)
+""" app.include_router(router)
+app.include_router(task_temp_url) """
 
 
-
-
-
-
-
-
-bank = Bank('VTB')
-
-vova = bank.add_client('vova')
-
-print(vova)
-
-
-
+if __name__ == '__main__':
+    Client.metadata.create_all(engine)
+    Bank.metadata.create_all(engine)
+    print('Start Server')
+    uvicorn.run('main:app', port = 8000, host='127.0.0.1', reload=True)
+    print('Server Stop')
 
  

@@ -23,7 +23,8 @@ class Client:
         last_name = input('Enter last name: ')
         addres = input('Enter addres: ')
         passport = input('Enter passport: ')
-        return Client(first_name, last_name, addres, passport)
+        phone = input('Enter phone: ')
+        return Client(first_name, last_name, addres, passport, phone)
     
 
 
